@@ -1,0 +1,217 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+@font-face {
+  font-family: 'Sora';
+  src: url('/fonts/Sora-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Sora, Arial, Helvetica, sans-serif;
+}
+
+ul {
+  margin: 0;
+}
+
+/* Markdown 内容样式 */
+.markdown-content {
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #ffffff;
+}
+
+.markdown-content h1 {
+  font-size: 2.25rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 0.3rem;
+}
+
+.markdown-content h2 {
+  font-size: 1.8rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 0.3rem;
+}
+
+.markdown-content h3 {
+  font-size: 1.5rem;
+}
+
+.markdown-content h4 {
+  font-size: 1.25rem;
+}
+
+/* 段落和列表间距 */
+.markdown-content p,
+.markdown-content ul,
+.markdown-content ol,
+.markdown-content blockquote {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+/* 列表样式 */
+.markdown-content ul,
+.markdown-content ol {
+  padding-left: 2rem;
+}
+
+.markdown-content li {
+  margin-bottom: 0.5rem;
+}
+
+.markdown-content li > ul,
+.markdown-content li > ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+/* 引用块样式 */
+.markdown-content blockquote {
+  padding: 0.5rem 1rem;
+  border-left: 4px solid #444;
+  color: #aaa;
+  background-color: #222;
+}
+
+.markdown-content blockquote > :first-child {
+  margin-top: 0;
+}
+
+.markdown-content blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+/* 代码样式 */
+.markdown-content code {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(200, 200, 200, 0.1);
+  border-radius: 3px;
+  font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+  color: #e0e0e0;
+}
+
+.markdown-content pre {
+  padding: 1rem;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #1a1a1a;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+}
+
+.markdown-content pre code {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: 0;
+  word-break: normal;
+  white-space: pre;
+}
+
+/* 表格样式 */
+.markdown-content table {
+  width: 100%;
+  margin-bottom: 1rem;
+  border-collapse: collapse;
+  border-spacing: 0;
+  overflow: auto;
+}
+
+.markdown-content table th {
+  font-weight: 600;
+  background-color: #2a2a4a;
+  border: 1px solid #444;
+  padding: 0.75rem;
+  text-align: left;
+  color: #fff;
+}
+
+.markdown-content table td {
+  border: 1px solid #444;
+  padding: 0.75rem;
+  color: #e0e0e0;
+}
+
+.markdown-content table tr:nth-child(2n) {
+  background-color: #222;
+}
+
+.markdown-content table tr:hover {
+  background-color: #333;
+}
+
+/* 水平线样式 */
+.markdown-content hr {
+  height: 0.25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: #444;
+  border: 0;
+}
+
+/* 链接样式 */
+.markdown-content a {
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+.markdown-content a:hover {
+  text-decoration: underline;
+}
+
+/* 图片样式 */
+.markdown-content img {
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+/* ChatAgent 动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}
