@@ -78,10 +78,17 @@ export default async function NewsPage() {
           {newsItems.map((news, index) => (
             <div key={news.slug} className="news-card">
               <Link 
-                href={`/news/${news.slug}`}
+                href={
+                  news.slug === 'trade-competition' 
+                    ? 'https://news.hyperindex.trade/Happy_Trade' 
+                    : news.slug === 'welcome' 
+                    ? 'https://news.hyperindex.trade/' 
+                    : `/news/${news.slug}`
+                }
                 className={`block bg-[#171923] bg-opacity-80 border border-gray-800 rounded-lg hover:border-gray-700 transition-colors ${
                   index === 0 ? 'p-8' : 'p-6'
                 }`}
+                {...{target: '_blank', rel: 'noopener noreferrer'} }
               >
                 <div className="flex items-center text-sm text-gray-400 mb-4">
                   <CalendarIcon className="h-4 w-4 mr-2" />
