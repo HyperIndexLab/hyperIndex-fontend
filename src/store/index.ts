@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import tokenListReducer from './tokenListSlice';
 import userTokensReducer from './userTokensSlice';
+import orderBookReducer from './orderBookSlice';
 
 const store = configureStore({
   reducer: {
     tokenList: tokenListReducer,
     userTokens: userTokensReducer,
+    orderBook: orderBookReducer,
   },
 });
 

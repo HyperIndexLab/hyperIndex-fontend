@@ -21,6 +21,7 @@ type MenuItem = {
   target?: string;
   rel?: string;
   children?: MenuItem[];
+  badge?: string;
 };
 
 const MENU_MAP: MenuItem[] = [
@@ -39,6 +40,26 @@ const MENU_MAP: MenuItem[] = [
           strokeLinejoin="round"
           strokeWidth={2}
           d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
+        />
+      </svg>
+    ),
+  },
+  {
+    path: "/stock",
+    label: "OrderBook",
+    badge: "Test",
+    icon: (
+      <svg
+        className="w-4 h-4"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M12 6V4m0 2a2 2 0 01-2 2H6a2 2 0 01-2-2V4m8 2a2 2 0 002 2h4a2 2 0 002-2V4M6 10h12M6 14h6m-6 4h12"
         />
       </svg>
     ),
@@ -262,7 +283,7 @@ export default function Header() {
                     href={item.path}
                     target={item.target}
                     rel={item.rel}
-                    className={`px-3 flex items-center gap-2 transition-colors ${
+                    className={`px-3 flex items-center gap-2 transition-colors relative ${
                       pathname === item.path 
                         ? "text-white font-medium" 
                         : "text-gray-400 hover:text-gray-200"
@@ -272,6 +293,11 @@ export default function Header() {
                       {item.icon}
                       {item.label}
                     </span>
+                    {item.badge && (
+                      <span className="absolute -top-2 right-2 origin-top-right rotate-12 text-[8px] font-semibold uppercase tracking-wide bg-primary text-black px-1.5 py-[1px] rounded shadow-lg shadow-primary/40">
+                        {item.badge}
+                      </span>
+                    )}
                   </Link>
                 ) : (
                   <div className="group">
@@ -419,7 +445,14 @@ export default function Header() {
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {item.icon}
-                        <span>{item.label}</span>
+                        <span className="flex items-center gap-2">
+                          {item.label}
+                          {item.badge && (
+                            <span className="text-[10px] uppercase tracking-wide bg-primary/20 text-primary border border-primary/40 px-1 py-0.5 rounded">
+                              {item.badge}
+                            </span>
+                          )}
+                        </span>
                       </Link>
                     ) : (
                       <details className="group">

@@ -1,0 +1,665 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "TradeService",
+  "sourceName": "contracts/orderbook/TradeService.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferStarted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "tokenA",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "tokenB",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "tradeAB",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "tradeBA",
+          "type": "address"
+        }
+      ],
+      "name": "PairCreated",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "acceptOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_feeTo",
+          "type": "address"
+        }
+      ],
+      "name": "changeFeeTo",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenA",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenB",
+          "type": "address"
+        }
+      ],
+      "name": "computeTradeAddr",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "predictedAddr",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenA",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenB",
+          "type": "address"
+        }
+      ],
+      "name": "createPair",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "tradeAB",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "tradeBA",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "fee",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "feeTo",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenIn",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenOut",
+          "type": "address"
+        },
+        {
+          "internalType": "uint112",
+          "name": "amountIn",
+          "type": "uint112"
+        },
+        {
+          "internalType": "uint112",
+          "name": "amountWant",
+          "type": "uint112"
+        },
+        {
+          "internalType": "uint48",
+          "name": "findFromId",
+          "type": "uint48"
+        }
+      ],
+      "name": "getBeforeOrderId",
+      "outputs": [
+        {
+          "internalType": "uint48",
+          "name": "beforeOrderId",
+          "type": "uint48"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenA",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenB",
+          "type": "address"
+        }
+      ],
+      "name": "getPair",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "tradeAB",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "tradeBA",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenIn",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenOut",
+          "type": "address"
+        },
+        {
+          "internalType": "uint48",
+          "name": "fromOrderId",
+          "type": "uint48"
+        },
+        {
+          "internalType": "uint8",
+          "name": "num",
+          "type": "uint8"
+        }
+      ],
+      "name": "getPendingOrders",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint48",
+              "name": "orderId",
+              "type": "uint48"
+            },
+            {
+              "internalType": "uint112",
+              "name": "amountIn",
+              "type": "uint112"
+            },
+            {
+              "internalType": "uint112",
+              "name": "amountWant",
+              "type": "uint112"
+            },
+            {
+              "internalType": "uint32",
+              "name": "progress",
+              "type": "uint32"
+            }
+          ],
+          "internalType": "struct TradeService.PendingOrder[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenIn",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenOut",
+          "type": "address"
+        }
+      ],
+      "name": "getPendingOrdersTopId",
+      "outputs": [
+        {
+          "internalType": "uint48",
+          "name": "topOrderId",
+          "type": "uint48"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenIn",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenOut",
+          "type": "address"
+        }
+      ],
+      "name": "getTradeOfPendingOrder",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "tradeAddr",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenIn",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenOut",
+          "type": "address"
+        }
+      ],
+      "name": "getTradeOfTakeOrder",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "tradeAddr",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "internalType": "uint48",
+          "name": "lastIndex",
+          "type": "uint48"
+        },
+        {
+          "internalType": "uint48",
+          "name": "num",
+          "type": "uint48"
+        }
+      ],
+      "name": "getUserOrders",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint48",
+              "name": "index",
+              "type": "uint48"
+            },
+            {
+              "internalType": "address",
+              "name": "trade",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "tokenInSymbol",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "tokenOutSymbol",
+              "type": "string"
+            },
+            {
+              "internalType": "uint48",
+              "name": "orderId",
+              "type": "uint48"
+            },
+            {
+              "internalType": "uint32",
+              "name": "createTime",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint112",
+              "name": "amountIn",
+              "type": "uint112"
+            },
+            {
+              "internalType": "uint112",
+              "name": "amountOut",
+              "type": "uint112"
+            },
+            {
+              "internalType": "uint32",
+              "name": "progress",
+              "type": "uint32"
+            },
+            {
+              "internalType": "bool",
+              "name": "isRemoved",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct TradeService.UserOrder[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenIn",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenOut",
+          "type": "address"
+        },
+        {
+          "internalType": "uint112",
+          "name": "amountIn",
+          "type": "uint112"
+        },
+        {
+          "internalType": "uint112",
+          "name": "amountOut",
+          "type": "uint112"
+        },
+        {
+          "internalType": "uint48",
+          "name": "beforeOrderId",
+          "type": "uint48"
+        }
+      ],
+      "name": "makeOrder",
+      "outputs": [
+        {
+          "internalType": "uint48",
+          "name": "newOrderId",
+          "type": "uint48"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "pendingOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenIn",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenOut",
+          "type": "address"
+        },
+        {
+          "internalType": "uint112",
+          "name": "amountIn",
+          "type": "uint112"
+        },
+        {
+          "internalType": "uint112",
+          "name": "amountOutForPrice",
+          "type": "uint112"
+        }
+      ],
+      "name": "placeOrder",
+      "outputs": [
+        {
+          "internalType": "uint112",
+          "name": "tokenPaid",
+          "type": "uint112"
+        },
+        {
+          "internalType": "uint112",
+          "name": "tokenGain",
+          "type": "uint112"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenA",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenB",
+          "type": "address"
+        }
+      ],
+      "name": "refreshApprove",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenIn",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenOut",
+          "type": "address"
+        },
+        {
+          "internalType": "uint112",
+          "name": "amountIn",
+          "type": "uint112"
+        },
+        {
+          "internalType": "uint112",
+          "name": "amountOutForPrice",
+          "type": "uint112"
+        }
+      ],
+      "name": "takeOrder",
+      "outputs": [
+        {
+          "internalType": "uint112",
+          "name": "tokenPaid",
+          "type": "uint112"
+        },
+        {
+          "internalType": "uint112",
+          "name": "tokenGain",
+          "type": "uint112"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "userOrdersLength",
+      "outputs": [
+        {
+          "internalType": "uint48",
+          "name": "",
+          "type": "uint48"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ],
+  "bytecode": "",
+  "deployedBytecode": "",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

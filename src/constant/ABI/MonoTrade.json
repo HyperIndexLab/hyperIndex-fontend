@@ -1,0 +1,386 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "MonoTrade",
+  "sourceName": "contracts/orderbook/MonoTrade.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_tokenA",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_tokenB",
+          "type": "address"
+        },
+        {
+          "internalType": "uint8",
+          "name": "_fee",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint48",
+          "name": "orderId",
+          "type": "uint48"
+        }
+      ],
+      "name": "CancelOrder",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint48",
+          "name": "orderId",
+          "type": "uint48"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint112",
+          "name": "tokenBIn",
+          "type": "uint112"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint112",
+          "name": "tokenAWant",
+          "type": "uint112"
+        }
+      ],
+      "name": "MakeOrder",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint112",
+          "name": "tokenAPaid",
+          "type": "uint112"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint112",
+          "name": "tokenBGain",
+          "type": "uint112"
+        }
+      ],
+      "name": "TakeOrder",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint48",
+          "name": "orderId",
+          "type": "uint48"
+        }
+      ],
+      "name": "cancelOrder",
+      "outputs": [
+        {
+          "internalType": "uint112",
+          "name": "tokenBLeft",
+          "type": "uint112"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint48",
+          "name": "orderId",
+          "type": "uint48"
+        },
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "changeOrderOwner",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "count",
+      "outputs": [
+        {
+          "internalType": "uint48",
+          "name": "",
+          "type": "uint48"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "factory",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "fee",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint112",
+          "name": "tokenBIn",
+          "type": "uint112"
+        },
+        {
+          "internalType": "uint112",
+          "name": "tokenAWant",
+          "type": "uint112"
+        },
+        {
+          "internalType": "uint48",
+          "name": "findFromId",
+          "type": "uint48"
+        }
+      ],
+      "name": "findBeforeOrderId",
+      "outputs": [
+        {
+          "internalType": "uint48",
+          "name": "",
+          "type": "uint48"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint48",
+          "name": "orderId",
+          "type": "uint48"
+        }
+      ],
+      "name": "getOrder",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint48",
+              "name": "beforeOrderId",
+              "type": "uint48"
+            },
+            {
+              "internalType": "uint48",
+              "name": "afterOrderId",
+              "type": "uint48"
+            },
+            {
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "internalType": "uint112",
+              "name": "tokenBIn",
+              "type": "uint112"
+            },
+            {
+              "internalType": "uint112",
+              "name": "tokenAWant",
+              "type": "uint112"
+            },
+            {
+              "internalType": "uint32",
+              "name": "progress",
+              "type": "uint32"
+            }
+          ],
+          "internalType": "struct MonoTrade.Order",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint112",
+          "name": "tokenBIn",
+          "type": "uint112"
+        },
+        {
+          "internalType": "uint112",
+          "name": "tokenAWant",
+          "type": "uint112"
+        },
+        {
+          "internalType": "uint48",
+          "name": "beforeOrderId",
+          "type": "uint48"
+        }
+      ],
+      "name": "makeOrder",
+      "outputs": [
+        {
+          "internalType": "uint48",
+          "name": "",
+          "type": "uint48"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint48",
+          "name": "",
+          "type": "uint48"
+        }
+      ],
+      "name": "orders",
+      "outputs": [
+        {
+          "internalType": "uint48",
+          "name": "beforeOrderId",
+          "type": "uint48"
+        },
+        {
+          "internalType": "uint48",
+          "name": "afterOrderId",
+          "type": "uint48"
+        },
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint112",
+          "name": "tokenBIn",
+          "type": "uint112"
+        },
+        {
+          "internalType": "uint112",
+          "name": "tokenAWant",
+          "type": "uint112"
+        },
+        {
+          "internalType": "uint32",
+          "name": "progress",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint112",
+          "name": "tokenAIn",
+          "type": "uint112"
+        },
+        {
+          "internalType": "uint112",
+          "name": "tokenBForPrice",
+          "type": "uint112"
+        }
+      ],
+      "name": "takeOrder",
+      "outputs": [
+        {
+          "internalType": "uint112",
+          "name": "tokenAPaid",
+          "type": "uint112"
+        },
+        {
+          "internalType": "uint112",
+          "name": "tokenBGain",
+          "type": "uint112"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "tokenA",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "tokenB",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "topOrderId",
+      "outputs": [
+        {
+          "internalType": "uint48",
+          "name": "",
+          "type": "uint48"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "",
+  "deployedBytecode": "",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
